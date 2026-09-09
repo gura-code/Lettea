@@ -20,41 +20,15 @@
       overflow: hidden; 
       font-family: 'Quicksand', sans-serif; 
       display: flex; 
+      flex-direction: column;
       justify-content: center; 
       align-items: center; 
       background-color: #ffffff;
-      /* Sfondo a griglia bianca con linee nere ripreso dal progetto precedente */
+      /* Sfondo a griglia bianca con linee nere */
       background-image: 
         linear-gradient(to right, rgba(0, 0, 0, 0.07) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(0, 0, 0, 0.07) 1px, transparent 1px);
       background-size: 20px 20px;
-    }
-
-    .phone-wrapper { 
-      width: 100vw; 
-      height: 100dvh; 
-      position: relative; 
-      overflow: hidden; 
-      display: flex; 
-      flex-direction: column; 
-      justify-content: center; 
-      align-items: center; 
-    }
-
-    @media (min-width: 500px) { 
-      .phone-wrapper { 
-        width: 380px; 
-        height: 780px; 
-        max-height: 92vh; 
-        border-radius: 40px; 
-        border: 8px solid #000000; 
-        box-shadow: 0 20px 40px rgba(0,0,0,0.3); 
-        background-color: #ffffff;
-        background-image: 
-          linear-gradient(to right, rgba(0, 0, 0, 0.07) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(0, 0, 0, 0.07) 1px, transparent 1px);
-        background-size: 20px 20px;
-      } 
     }
 
     /* CONTENITORE 3D PER LA ROTAZIONE FLUIDA */
@@ -77,7 +51,7 @@
       transform: rotateY(180deg);
     }
 
-    /* FACCE DELLA CARD (FRONTE E RETRO STesse DIMENSIONI) */
+    /* FACCE DELLA CARD (FRONTE E RETRO STESSE DIMENSIONI) */
     .card-face {
       position: absolute;
       width: 100%;
@@ -128,27 +102,23 @@
 </head>
 <body>
 
-  <div class="phone-wrapper">
-    <div class="card-scene" onclick="toggleCard()">
-      <div class="card-element" id="interactive-card">
-        
-        <!-- FRONTE: Busta chiusa -->
-        <div class="card-face card-front">
-          <!-- Sostituisci 'busta-chiusa.png' con il nome reale del file della busta -->
-          <img src="busta-chiusa.png" alt="Busta Chiusa" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'330\' height=\'210\'><rect width=\'330\' height=\'210\' fill=\'%23f4f4f4\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'sans-serif\' font-size=\'16\' fill=\'%23333\' font-weight=\'bold\'>Immagine Busta Chiusa</text></svg>'">
-        </div>
-
-        <!-- RETRO: Postcard -->
-        <div class="card-face card-back">
-          <!-- Sostituisci 'postcard.png' con l'immagine della cartolina o il design -->
-          <img src="postcard.png" alt="Postcard" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'330\' height=\'210\'><rect width=\'330\' height=\'210\' fill=\'%23ffffff\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'sans-serif\' font-size=\'16\' fill=\'%23333\' font-weight=\'bold\'>Immagine Post-Card</text></svg>'">
-        </div>
-
+  <div class="card-scene" onclick="toggleCard()">
+    <div class="card-element" id="interactive-card">
+      
+      <!-- FRONTE: Busta chiusa -->
+      <div class="card-face card-front">
+        <img src="busta-chiusa.png" alt="Busta Chiusa" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'330\' height=\'210\'><rect width=\'330\' height=\'210\' fill=\'%23f4f4f4\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'sans-serif\' font-size=\'16\' fill=\'%23333\' font-weight=\'bold\'>Metti qui busta-chiusa.png</text></svg>'">
       </div>
+
+      <!-- RETRO: Postcard -->
+      <div class="card-face card-back">
+        <img src="postcard.png" alt="Postcard" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'330\' height=\'210\'><rect width=\'330\' height=\'210\' fill=\'%23ffffff\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'sans-serif\' font-size=\'16\' fill=\'%23333\' font-weight=\'bold\'>Metti qui postcard.png</text></svg>'">
+      </div>
+
     </div>
-    
-    <div class="hint-text">Ticca per girare la busta</div>
   </div>
+  
+  <div class="hint-text">Clicca per girare la busta</div>
 
   <script>
     function toggleCard() {
