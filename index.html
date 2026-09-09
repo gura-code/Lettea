@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Regalo - Busta Interattiva</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+      -webkit-text-size-adjust: 100%;
+    }
+
+    html, body { 
+      width: 100vw; 
+      height: 100dvh; 
+      overflow: hidden; 
+      font-family: 'Quicksand', sans-serif; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      background-color: #ffffff;
+      /* Sfondo a griglia bianca con linee nere ripreso dal progetto precedente */
+      background-image: 
+        linear-gradient(to right, rgba(0, 0, 0, 0.07) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.07) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .phone-wrapper { 
+      width: 100vw; 
+      height: 100dvh; 
+      position: relative; 
+      overflow: hidden; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center; 
+      align-items: center; 
+    }
+
+    @media (min-width: 500px) { 
+      .phone-wrapper { 
+        width: 380px; 
+        height: 780px; 
+        max-height: 92vh; 
+        border-radius: 40px; 
+        border: 8px solid #000000; 
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3); 
+        background-color: #ffffff;
+        background-image: 
+          linear-gradient(to right, rgba(0, 0, 0, 0.07) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(0, 0, 0, 0.07) 1px, transparent 1px);
+        background-size: 20px 20px;
+      } 
+    }
+
+    /* CONTENITORE 3D PER LA ROTAZIONE FLUIDA */
+    .card-scene {
+      width: 330px;
+      height: 210px;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .card-element {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+    }
+
+    .card-element.is-flipped {
+      transform: rotateY(180deg);
+    }
+
+    /* FACCE DELLA CARD (FRONTE E RETRO STesse DIMENSIONI) */
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border: 3px solid #000000;
+      border-radius: 16px;
+      overflow: hidden;
+      background-color: #ffffff;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .card-front {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-front img, .card-back img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+    }
+
+    /* ISTRUZIONE / SUGGERIMENTO CLIC */
+    .hint-text {
+      margin-top: 25px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #555555;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      pointer-events: none;
+      animation: pulseHint 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseHint {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="phone-wrapper">
+    <div class="card-scene" onclick="toggleCard()">
+      <div class="card-element" id="interactive-card">
+        
+        <!-- FRONTE: Busta chiusa -->
+        <div class="card-face card-front">
+          <!-- Sostituisci 'busta-chiusa.png' con il nome reale del file della busta -->
+          <img src="busta-chiusa.png" alt="Busta Chiusa" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'330\' height=\'210\'><rect width=\'330\' height=\'210\' fill=\'%23f4f4f4\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'sans-serif\' font-size=\'16\' fill=\'%23333\' font-weight=\'bold\'>Immagine Busta Chiusa</text></svg>'">
+        </div>
+
+        <!-- RETRO: Postcard -->
+        <div class="card-face card-back">
+          <!-- Sostituisci 'postcard.png' con l'immagine della cartolina o il design -->
+          <img src="postcard.png" alt="Postcard" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'330\' height=\'210\'><rect width=\'330\' height=\'210\' fill=\'%23ffffff\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'sans-serif\' font-size=\'16\' fill=\'%23333\' font-weight=\'bold\'>Immagine Post-Card</text></svg>'">
+        </div>
+
+      </div>
+    </div>
+    
+    <div class="hint-text">Ticca per girare la busta</div>
+  </div>
+
+  <script>
+    function toggleCard() {
+      const card = document.getElementById('interactive-card');
+      card.classList.toggle('is-flipped');
+    }
+  </script>
+
+</body>
+</html>
